@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogos Divertidos para Casais ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        h1 {
+            color: white;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            color: #f8f9fa;
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .game-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        .game-title {
+            color: #4a5568;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .game-content {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .result {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 1.1em;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .score-display {
+            background: linear-gradient(45deg, #10ac84, #00d2d3);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .input-group {
+            margin: 15px 0;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .heart {
+            color: #ff6b6b;
+            font-size: 1.2em;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .question-card {
+            background: linear-gradient(45deg, #ffeaa7, #fdcb6e);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            color: #2d3436;
+            font-size: 1.1em;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .timer {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+            margin: 10px 0;
+        }
+        
+        .challenge-result {
+            background: linear-gradient(45deg, #a29bfe, #6c5ce7);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.2em;
+            animation: slideIn 0.5s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .edit-btn {
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-size: 12px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .edit-btn:hover {
+            background: #5f3dc4;
+            transform: scale(1.05);
+        }
+        
+        .edit-area {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            color: white;
+        }
+        
+        .edit-area textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            resize: vertical;
+        }
+        
+        .edit-area h3 {
+            margin-bottom: 10px;
+            color: #f8f9fa;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Jogos Divertidos para Casais <span class="heart">❤️</span></h1>
+            <p class="subtitle">Fortaleça seu relacionamento com diversão e risadas!</p>
+        </header>
+        
+        <div class="games-grid">
+            <!-- Jogo 1: Gerador de Desafios -->
+            <div class="game-card">
+                <h2 class="game-title">🎯 Gerador de Desafios</h2>
+                <div class="game-content">
+                    <p>Desafios divertidos para vocês fazerem juntos!</p>
+                    <button class="btn" onclick="generateChallenge()">Novo Desafio</button>
+                    <button class="edit-btn" onclick="toggleEdit('challenges')">Editar</button>
+                    <div id="challenge-result"></div>
+                </div>
+            </div>
+            
+            <!-- Jogo 2: Perguntas Íntimas -->
+            <div class="game-card">
+                <h2 class="game-title">💭 Perguntas Íntimas</h2>
+                <div class="game-content">
+                    <p>Conheçam melhor um ao outro!</p>
+                    <button class="btn" onclick="generateQuestion()">Nova Pergunta</button>
+                    <button class="edit-btn" onclick="toggleEdit('questions')">Editar</button>
+                    <div id="question-result"></div>
+                </div>
+            </div>
+            
+            <!-- Jogo 3: Jogo dos Pontos -->
+            <div class="game-card">
+                <h2 class="game-title">🏆 Jogo dos Pontos</h2>
+                <div class="game-content">
+                    <p>Compete de forma divertida!</p>
+                    <div class="input-group">
+                        <input type="text" id="player1" placeholder="Nome do Jogador 1" value="Player 1">
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="player2" placeholder="Nome do Jogador 2" value="Player 2">
+                    </div>
+                    <button class="btn" onclick="addPoint(1)">+1 para Jogador 1</button>
+                    <button class="btn" onclick="addPoint(2)">+1 para Jogador 2</button>
+                    <button class="btn" onclick="resetPoints()">Reset</button>
+                    <div id="score-display" class="score-display">
+                        <span id="score1">Player 1: 0</span> | <span id="score2">Player 2: 0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Jogo 4: Roda da Sorte -->
+            <div class="game-card">
+                <h2 class="game-title">🎲 Roda da Sorte</h2>
+                <div class="game-content">
+                    <p>Deixe a sorte decidir sua próxima aventura!</p>
+                    <button class="btn" onclick="spinWheel()">Girar Roda</button>
+                    <button class="edit-btn" onclick="toggleEdit('wheel')">Editar</button>
+                    <div id="wheel-result"></div>
+                </div>
+            </div>
+            
+            <!-- Jogo 5: Cronômetro de Desafios -->
+            <div class="game-card">
+                <h2 class="game-title">⏰ Cronômetro de Desafios</h2>
+                <div class="game-content">
+                    <p>Desafios contra o tempo!</p>
+                    <div class="timer" id="timer">00:00</div>
+                    <button class="btn" onclick="startTimer()">Iniciar (30s)</button>
+                    <button class="btn" onclick="stopTimer()">Parar</button>
+                    <button class="btn" onclick="resetTimer()">Reset</button>
+                    <button class="btn" onclick="getTimedChallenge()">Desafio Rápido</button>
+                    <div id="timed-challenge"></div>
+                </div>
+            </div>
+            
+            <!-- Jogo 6: Verdade ou Consequência -->
+            <div class="game-card">
+                <h2 class="game-title">🎭 Verdade ou Consequência</h2>
+                <div class="game-content">
+                    <p>O clássico jogo para casais!</p>
+                    <button class="btn" onclick="getTruth()">Verdade</button>
+                    <button class="btn" onclick="getDare()">Consequência</button>
+                    <button class="edit-btn" onclick="toggleEdit('truthdare')">Editar</button>
+                    <div id="truthdare-result"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Área de Edição -->
+        <div id="edit-challenges" class="edit-area hidden">
+            <h3>Editar Desafios</h3>
+            <textarea id="challenges-text" placeholder="Digite os desafios, um por linha..."></textarea>
+            <button class="btn" onclick="saveEdit('challenges')">Salvar</button>
+            <button class="btn" onclick="cancelEdit('challenges')">Cancelar</button>
+        </div>
+        
+        <div id="edit-questions" class="edit-area hidden">
+            <h3>Editar Perguntas</h3>
+            <textarea id="questions-text" placeholder="Digite as perguntas, uma por linha..."></textarea>
+            <button class="btn" onclick="saveEdit('questions')">Salvar</button>
+            <button class="btn" onclick="cancelEdit('questions')">Cancelar</button>
+        </div>
+        
+        <div id="edit-wheel" class="edit-area hidden">
+            <h3>Editar Roda da Sorte</h3>
+            <textarea id="wheel-text" placeholder="Digite as opções da roda, uma por linha..."></textarea>
+            <button class="btn" onclick="saveEdit('wheel')">Salvar</button>
+            <button class="btn" onclick="cancelEdit('wheel')">Cancelar</button>
+        </div>
+        
+        <div id="edit-truthdare" class="edit-area hidden">
+            <h3>Editar Verdades e Consequências</h3>
+            <p>Verdades (uma por linha):</p>
+            <textarea id="truths-text" placeholder="Digite as verdades, uma por linha..."></textarea>
+            <p>Consequências (uma por linha):</p>
+            <textarea id="dares-text" placeholder="Digite as consequências, uma por linha..."></textarea>
+            <button class="btn" onclick="saveEdit('truthdare')">Salvar</button>
+            <button class="btn" onclick="cancelEdit('truthdare')">Cancelar</button>
+        </div>
+    </div>
+    
+    <script>
+        // Dados dos jogos (editáveis)
+        let gameData = {
+            challenges: [
+                "Façam uma dança maluca juntos por 1 minuto",
+                "Contem 5 coisas que amam um no outro",
+                "Façam um lanche especial juntos",
+                "Tirem 10 fotos engraçadas",
+                "Cantem uma música romântica juntos",
+                "Façam uma massagem um no outro",
+                "Escrevam uma carta de amor curta",
+                "Planejem um encontro dos sonhos",
+                "Imitem um casal de filme famoso",
+                "Façam uma lista de lugares para visitar juntos"
+            ],
+            questions: [
+                "Qual foi o momento mais engraçado que vivemos juntos?",
+                "Se pudéssemos viajar para qualquer lugar, onde iríamos?",
+                "Qual é a sua memória favorita do nosso relacionamento?",
+                "O que você mais admira em mim?",
+                "Qual seria o nosso encontro perfeito?",
+                "Que sonho gostaríamos de realizar juntos?",
+                "Qual é a coisa mais fofa que já fiz?",
+                "O que você mudaria no nosso primeiro encontro?",
+                "Qual é o seu tipo de carinho favorito?",
+                "Como você imagina nossa vida daqui a 5 anos?"
+            ],
+            wheel: [
+                "Assistir um filme romântico",
+                "Cozinhar algo especial",
+                "Fazer uma caminhada",
+                "Jogos de tabuleiro",
+                "Karaokê em casa",
+                "Piquenique interno",
+                "Sessão de fotos",
+                "Dança na sala",
+                "Conversa profunda",
+                "Massagem relaxante"
+            ],
+            truths: [
+                "Qual é o seu maior medo no relacionamento?",
+                "Qual foi a primeira impressão que teve de mim?",
+                "O que você nunca me contou?",
+                "Qual é o seu sonho mais secreto?",
+                "O que mais te atrai em mim?",
+                "Qual é a sua fantasia romântica?",
+                "O que você mudaria em você?",
+                "Qual foi o melhor presente que já recebeu de mim?"
+            ],
+            dares: [
+                "Declare seu amor em voz alta",
+                "Faça uma serenata",
+                "Dance de forma sedutora",
+                "Conte uma piada engraçada",
+                "Faça uma imitação hilária",
+                "Cante uma música infantil",
+                "Faça 10 flexões",
+                "Conte um segredo engraçado"
+            ],
+            timedChallenges: [
+                "Digam 10 qualidades um do outro",
+                "Façam poses engraçadas",
+                "Contem até 100 juntos",
+                "Façam um desenho do casal",
+                "Digam palavras de amor em diferentes idiomas",
+                "Imitem animais",
+                "Façam uma história inventada",
+                "Digam nomes de filmes românticos"
+            ]
+        };
+        
+        // Variáveis do jogo
+        let scores = {player1: 0, player2: 0};
+        let timer = {seconds: 0, interval: null, running: false};
+        
+        // Função para gerar desafios
+        function generateChallenge() {
+            const challenge = gameData.challenges[Math.floor(Math.random() * gameData.challenges.length)];
+            document.getElementById('challenge-result').innerHTML = `
+                <div class="challenge-result">
+                    <strong>Seu Desafio:</strong><br>
+                    ${challenge}
+                </div>
+            `;
+        }
+        
+        // Função para gerar perguntas
+        function generateQuestion() {
+            const question = gameData.questions[Math.floor(Math.random() * gameData.questions.length)];
+            document.getElementById('question-result').innerHTML = `
+                <div class="question-card">
+                    <strong>Pergunta:</strong><br>
+                    ${question}
+                </div>
+            `;
+        }
+        
+        // Funções do jogo de pontos
+        function addPoint(player) {
+            scores[`player${player}`]++;
+            updateScoreDisplay();
+        }
+        
+        function resetPoints() {
+            scores.player1 = 0;
+            scores.player2 = 0;
+            updateScoreDisplay();
+        }
+        
+        function updateScoreDisplay() {
+            const player1Name = document.getElementById('player1').value || 'Player 1';
+            const player2Name = document.getElementById('player2').value || 'Player 2';
+            document.getElementById('score1').textContent = `${player1Name}: ${scores.player1}`;
+            document.getElementById('score2').textContent = `${player2Name}: ${scores.player2}`;
+        }
+        
+        // Função da roda da sorte
+        function spinWheel() {
+            const option = gameData.wheel[Math.floor(Math.random() * gameData.wheel.length)];
+            document.getElementById('wheel-result').innerHTML = `
+                <div class="result">
+                    <strong>🎯 A sorte escolheu:</strong><br>
+                    ${option}
+                </div>
+            `;
+        }
+        
+        // Funções do cronômetro
+        function startTimer() {
+            if (!timer.running) {
+                timer.seconds = 30;
+                timer.running = true;
+                timer.interval = setInterval(() => {
+                    if (timer.seconds > 0) {
+                        timer.seconds--;
+                        updateTimerDisplay();
+                    } else {
+                        stopTimer();
+                        alert('Tempo esgotado! 🚨');
+                    }
+                }, 1000);
+            }
+        }
+        
+        function stopTimer() {
+            if (timer.interval) {
+                clearInterval(timer.interval);
+                timer.interval = null;
+                timer.running = false;
+            }
+        }
+        
+        function resetTimer() {
+            stopTimer();
+            timer.seconds = 0;
+            updateTimerDisplay();
+        }
+        
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timer.seconds / 60);
+            const seconds = timer.seconds % 60;
+            document.getElementById('timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        function getTimedChallenge() {
+            const challenge = gameData.timedChallenges[Math.floor(Math.random() * gameData.timedChallenges.length)];
+            document.getElementById('timed-challenge').innerHTML = `
+                <div class="challenge-result">
+                    <strong>Desafio de 30 segundos:</strong><br>
+                    ${challenge}
+                </div>
+            `;
+        }
+        
+        // Funções de Verdade ou Consequência
+        function getTruth() {
+            const truth = gameData.truths[Math.floor(Math.random() * gameData.truths.length)];
+            document.getElementById('truthdare-result').innerHTML = `
+                <div class="result">
+                    <strong>💭 Verdade:</strong><br>
+                    ${truth}
+                </div>
+            `;
+        }
+        
+        function getDare() {
+            const dare = gameData.dares[Math.floor(Math.random() * gameData.dares.length)];
+            document.getElementById('truthdare-result').innerHTML = `
+                <div class="result">
+                    <strong>🎭 Consequência:</strong><br>
+                    ${dare}
+                </div>
+            `;
+        }
+        
+        // Funções de edição
+        function toggleEdit(type) {
+            const editArea = document.getElementById(`edit-${type}`);
+            if (editArea.classList.contains('hidden')) {
+                // Mostrar área de edição
+                editArea.classList.remove('hidden');
+                
+                // Preencher textarea com dados atuais
+                if (type === 'challenges') {
+                    document.getElementById('challenges-text').value = gameData.challenges.join('\n');
+                } else if (type === 'questions') {
+                    document.getElementById('questions-text').value = gameData.questions.join('\n');
+                } else if (type === 'wheel') {
+                    document.getElementById('wheel-text').value = gameData.wheel.join('\n');
+                } else if (type === 'truthdare') {
+                    document.getElementById('truths-text').value = gameData.truths.join('\n');
+                    document.getElementById('dares-text').value = gameData.dares.join('\n');
+                }
+            } else {
+                editArea.classList.add('hidden');
+            }
+        }
+        
+        function saveEdit(type) {
+            if (type === 'challenges') {
+                const text = document.getElementById('challenges-text').value;
+                gameData.challenges = text.split('\n').filter(line => line.trim() !== '');
+            } else if (type === 'questions') {
+                const text = document.getElementById('questions-text').value;
+                gameData.questions = text.split('\n').filter(line => line.trim() !== '');
+            } else if (type === 'wheel') {
+                const text = document.getElementById('wheel-text').value;
+                gameData.wheel = text.split('\n').filter(line => line.trim() !== '');
+            } else if (type === 'truthdare') {
+                const truthsText = document.getElementById('truths-text').value;
+                const daresText = document.getElementById('dares-text').value;
+                gameData.truths = truthsText.split('\n').filter(line => line.trim() !== '');
+                gameData.dares = daresText.split('\n').filter(line => line.trim() !== '');
+            }
+            
+            document.getElementById(`edit-${type}`).classList.add('hidden');
+            alert('Alterações salvas com sucesso! ✅');
+        }
+        
+        function cancelEdit(type) {
+            document.getElementById(`edit-${type}`).classList.add('hidden');
+        }
+        
+        // Inicializar display de pontuação
+        updateScoreDisplay();
+        updateTimerDisplay();
+    </script>
+</body>
+</html>
